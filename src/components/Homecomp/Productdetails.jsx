@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { FaStar } from "react-icons/fa";
-import { count } from 'firebase/firestore';
+// import { count } from 'firebase/firestore';
 import Footer from './Footer';
-import {Addcart} from './../../contextapi/Cartcontext'
+import { Addcart } from './../../contextapi/Cartcontext'
 import toast from 'react-hot-toast';
+// import { onAuthStateChanged } from 'firebase/auth';
+import { _Auth } from '../../Backend/Bass';
 
 const Productdetails = () => {
 
@@ -24,17 +26,34 @@ const Productdetails = () => {
   useEffect(() => {
     loadData();
   }, []);
-   
+
   let ratecount = Math.round(spdata?.rating.rate)
   let count = 5
   //console.log(ratecount);
-  
-  function handleAddToCart() {
-    addToCartCtx(spdata)
-    toast.success("Added to cart")
-}
 
-  
+  //   function handleAddToCart() {
+  //     addToCartCtx(spdata)
+  //     toast.success("Added to cart")
+  // }
+
+  const handleAddToCart = async () => {
+    try {
+      const user = _Auth.currentUser;   // ← This is synchronous and instant
+
+      if (user && user.emailVerified) {
+        addToCartCtx(spdata);
+        toast.success("Added to cart");
+      } else {
+        toast.error("Please login to add to cart");
+      }
+    } catch (error) {
+      toast.error("Something went wrong");
+    }
+  };
+
+
+
+
 
   return (
     <div className='min-w-screen min-h-screen'>
@@ -48,15 +67,15 @@ const Productdetails = () => {
           <p className='font-semibold'>Price: ${spdata?.price}</p>
 
           <div className='flex justify-center items-center gap-0.5'>
-          <p className=''>{spdata?.rating.rate}</p>
-          <span className='flex gap-0.5'>
-            {[...Array(count)].map((_, i)=>(
-                 <FaStar size={20} key={i} className={i< ratecount? "text-yellow-400" : "text-transparent [stroke:#FACC15] [stroke-width:30]"}/> 
-            ))}
-          
-          </span>
+            <p className=''>{spdata?.rating.rate}</p>
+            <span className='flex gap-0.5'>
+              {[...Array(count)].map((_, i) => (
+                <FaStar size={20} key={i} className={i < ratecount ? "text-yellow-400" : "text-transparent [stroke:#FACC15] [stroke-width:30]"} />
+              ))}
+
+            </span>
           </div>
-          
+
         </div>
 
         <div className='w-[800px] flex flex-col justify-center items-center'>
@@ -64,16 +83,16 @@ const Productdetails = () => {
           <p className='text-gray-800 justify-center'>{spdata?.description}</p>
 
         </div>
-      
-      <div className='flex justify-between items-center gap-4'>
-      <Link to="/home">
+
+        <div className='flex justify-between items-center gap-4'>
+          <Link to="/home">
             <button className='cursor-pointer font-semibold text-[14px] border-2 mt-2 border-blue-500 py-2 px-4 rounded-[2px] text-blue-500 hover:bg-blue-500 hover:text-white '>Close</button></Link>
-            <button className='cursor-pointer font-semibold text-[14px] border-2 mt-2 border-blue-500 py-2 px-4 rounded-[2px] text-blue-500 hover:bg-blue-500 hover:text-white ' onClick={handleAddToCart}>Add to cart</button>
-      </div>
-          
+          <button className='cursor-pointer font-semibold text-[14px] border-2 mt-2 border-blue-500 py-2 px-4 rounded-[2px] text-blue-500 hover:bg-blue-500 hover:text-white ' onClick={handleAddToCart}>Add to cart</button>
+        </div>
+
 
       </div>
-    <Footer/>
+      <Footer />
     </div>
   )
 }

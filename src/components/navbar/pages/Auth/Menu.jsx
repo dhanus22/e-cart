@@ -13,7 +13,7 @@ import { Addcart } from '../../../../contextapi/Cartcontext';
 const Menu = ({ search, setSearch }) => {
 
 
-  let {cartcount} = useContext(Addcart)
+  let {cartcount, setcartitems} = useContext(Addcart)
   console.log(cartcount());
   
   let data = useContext(Authcontext)
@@ -25,6 +25,8 @@ const Menu = ({ search, setSearch }) => {
   async function handlelogout() {
     try {
       await signOut(_Auth)
+      setcartitems([])
+      thupleman("/home")
       
     }
     catch (err) {

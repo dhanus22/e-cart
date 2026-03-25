@@ -2,14 +2,15 @@ import React, { useContext } from 'react'
 import { Addcart } from '../../contextapi/Cartcontext'
 import Cartcard from './Cartcard'
 
+
 const Cart = () => {
 
     let {cartitems, total_price} = useContext(Addcart)
 
-    let subtotal = total_price()
+    let subtotal = total_price().toFixed(2)
     let discount = (0.10 * subtotal).toFixed(2)
-    let delivery_fee = 0 == subtotal > 100? 0 : 50
-    let total = subtotal - discount + delivery_fee
+    let delivery_fee = (subtotal > 100 || subtotal == 0)? 0 : 50
+    let total = (subtotal - discount + delivery_fee).toFixed(2)
 
    
    
@@ -24,8 +25,6 @@ const Cart = () => {
                 {cartitems.map((item)=>(
                     <Cartcard key={item.id} id={item.id} image = {item.image} title = {item.title} price = {item.price}/>
                 ))}
-
-
                 </div>
 
 
