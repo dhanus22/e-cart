@@ -1,7 +1,7 @@
 import React from 'react'
 import India from '/India.png'
 import { Link } from 'react-router-dom'
-import logo from '/logo.png'
+import logo from '/logo1.png'
 
 
 
@@ -56,7 +56,7 @@ const Footer = () => {
 
         <div className='logo h-[20%]  flex justify-center items-center gap-14'>
           <Link to = "/home">
-      <img src={logo} alt="" onClick={handlelogo} className='h-10' />
+      <img src={logo} alt="" onClick={handlelogo} className='h-8.5' />
     </Link>
           <form action="" className='flex gap-4 font-semibold'>
             <input type="" placeholder="English" className='border-1 outline-none cursor-pointer text-center w-[120px] text-[14px]  py-1 rounded-[3px]' />

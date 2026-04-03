@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react"
 import Homecomp from "./Homecomp";
 import axios from "axios";
-import { useOutletContext } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 import Footer from "./Footer";
 import Hero from "./herocomp/Hero";
+import { FaRegHeart } from "react-icons/fa";
 
 
 const Home = () => {
@@ -49,6 +50,7 @@ const Home = () => {
           <li className="p-2 border-blue-400 border-2 rounded-[18px] text-blue-500 hover:bg-blue-500 hover:text-white cursor-pointer" onClick={() => handleCategory("jewelery")}>Jewelery</li>
           <li className="p-2 border-blue-400 border-2 rounded-[18px] text-blue-500 hover:bg-blue-500 hover:text-white cursor-pointer" onClick={() => handleCategory("electronics")}>Electronics</li>
           <li className="p-2 border-blue-400 border-2 rounded-[18px] text-blue-500 hover:bg-blue-500 hover:text-white cursor-pointer" onClick={() => handleCategory("women's clothing")}>Women's clothing</li>
+          <Link to = "/wishlist" className="p-2 border-blue-400 border-2 rounded-[50%] text-blue-500 hover:bg-blue-500 hover:text-white cursor-pointer flex justify-center items-center gap-1"><FaRegHeart size={20}/> </Link>
         </ul>
         
         <div className="flex flex-wrap justify-center gap-x-14 gap-y-7 mt-6 h-full mb-10">
