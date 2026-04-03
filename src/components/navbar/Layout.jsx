@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import Navbar from './Navbar'
 import {Toaster} from 'react-hot-toast'
+import Home from '../Homecomp/Home'
 
 const Layout = () => {
    

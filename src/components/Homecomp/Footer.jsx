@@ -1,7 +1,16 @@
 import React from 'react'
 import India from '/India.png'
+import { Link } from 'react-router-dom'
+import logo from '/logo.png'
+
+
 
 const Footer = () => {
+
+  function handlelogo(){
+    window.scrollTo(0, 0)
+  }
+
   return (
     <div className='h-[550px] bg-black   text-white mt-6'>
       <div className='  h-[80%] bg-blue-950 '>
@@ -46,7 +55,9 @@ const Footer = () => {
         <hr />
 
         <div className='logo h-[20%]  flex justify-center items-center gap-14'>
-          <h1>Logo</h1>
+          <Link to = "/home">
+      <img src={logo} alt="" onClick={handlelogo} className='h-10' />
+    </Link>
           <form action="" className='flex gap-4 font-semibold'>
             <input type="" placeholder="English" className='border-1 outline-none cursor-pointer text-center w-[120px] text-[14px]  py-1 rounded-[3px]' />
             <img src={India} alt="" className='h-5 relative top-1.5 left-11' />

@@ -24,6 +24,7 @@ const Productdetails = () => {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     loadData();
   }, []);
 

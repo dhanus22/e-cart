@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import logo from '/logo1.png'
 
 const Logo = ({setSearch,  setCategory}) => {
 
@@ -10,7 +11,7 @@ const Logo = ({setSearch,  setCategory}) => {
 
   return (
     <Link to = "/home">
-    <div className='left_nav' onClick={handlelogo}>Logo</div>
+      <img src={logo} alt="" onClick={handlelogo} className='h-9' />
     </Link>
   )
 }
