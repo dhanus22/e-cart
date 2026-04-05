@@ -3,6 +3,7 @@ import { Addcart } from '../../contextapi/Cartcontext'
 import { IoCartOutline } from "react-icons/io5";
 import Cartcard from './Cartcard'
 import { Link } from 'react-router-dom';
+import Footer from '../Homecomp/Footer';
 
 const Cart = () => {
 
@@ -14,11 +15,15 @@ const Cart = () => {
     let total = (subtotal - discount + delivery_fee).toFixed(2)
 
     return (
-        <section className='min-h-screen mx-14 mt-2'>
-            <h1 className='text-[28px] font-semibold mb-8'>Your cart</h1>
+        <>
+        <section className=' mx-14 mt-2'>
+            <div className='w-full flex justify-center'>
+                <h1 className='text-2xl font-bold font-serif mb-8'>Your cart</h1>
+            </div>
+            
 
             {cartitems.length !== 0 ? (
-                <div className='flex w-full min-h-screen'>
+                <div className='flex w-full '>
 
                     {/* Left Section */}
                     <div className='left-section w-[65%] flex flex-col gap-5'>
@@ -83,10 +88,11 @@ const Cart = () => {
                 <h1 className='text-2xl font-semibold'>Your cart is empty!</h1>
                 <Link to="/home" className='text-blue-500 border-2 border-blue-500 py-2 px-3 font-semibold hover:text-white hover:bg-blue-500'>Shop now</Link>
             </div>
-                
             )}
 
         </section>
+        <Footer/>
+        </>
     )
 }
 

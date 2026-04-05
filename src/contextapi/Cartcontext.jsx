@@ -5,7 +5,7 @@ export let Addcart = createContext();
 const Cartcontext = ({ children }) => {
   let [cartitems, setcartitems] = useState(()=>{
     let storedData = localStorage.getItem("cartitems")
-    return storedData ? JSON.parse(storedData) : []}
+    return storedData ? JSON.parse(storedData) : []} //!local storage data persistence
   );
 
   function total_price() {

@@ -7,6 +7,9 @@ import { Addcart } from './../../contextapi/Cartcontext'
 import toast from 'react-hot-toast';
 // import { onAuthStateChanged } from 'firebase/auth';
 import { _Auth } from '../../Backend/Bass';
+import { FaRegHeart } from "react-icons/fa";
+import { Addwishlist } from '../../contextapi/Wishcontext';
+import { FaHeart } from "react-icons/fa";
 
 const Productdetails = () => {
 
@@ -15,6 +18,8 @@ const Productdetails = () => {
   const [spdata, setspData] = useState();
 
   let { cartitems, addtocart: addToCartCtx } = useContext(Addcart)
+
+  let {addtowishlist, wishitems, remove} = useContext(Addwishlist)
 
   const loadData = async () => {
     const data = await fetch(`http://localhost:3006/products/${dbRou.id}`);
@@ -39,7 +44,7 @@ const Productdetails = () => {
 
   const handleAddToCart = async () => {
     try {
-      const user = _Auth.currentUser;   // ← This is synchronous and instant
+      const user = _Auth.currentUser;   //  This is synchronous and instant
 
       if (user && user.emailVerified) {
         addToCartCtx(spdata);
@@ -52,8 +57,26 @@ const Productdetails = () => {
     }
   };
 
+  let iswishllisted = wishitems.some(item=> item.id === spdata?.id)
 
-
+  let handlewishlist = () => {
+    try{
+      let user = _Auth.currentUser
+      if(user && user.emailVerified){
+        if(iswishllisted){
+          remove(spdata.id)
+          toast.success("Removed from wish list")
+        }
+        else{addtowishlist(spdata)}
+      }
+      else{
+        toast.error("Login to add to wish list")
+      }
+    }
+    catch(error){
+      toast.error("Something went wrong")
+    }
+  }
 
 
   return (
@@ -85,10 +108,17 @@ const Productdetails = () => {
 
         </div>
 
-        <div className='flex justify-between items-center gap-4'>
+        <div className='flex justify-between items-center gap-4 mt-4'>
           <Link to="/home">
-            <button className='cursor-pointer font-semibold text-[14px] border-2 mt-2 border-blue-500 py-2 px-4 rounded-[2px] text-blue-500 hover:bg-blue-500 hover:text-white '>Close</button></Link>
-          <button className='cursor-pointer font-semibold text-[14px] border-2 mt-2 border-blue-500 py-2 px-4 rounded-[2px] text-blue-500 hover:bg-blue-500 hover:text-white ' onClick={handleAddToCart}>Add to cart</button>
+            <button className='cursor-pointer font-semibold text-[14px] border-2  border-blue-500 py-2 px-4 rounded-[2px] text-blue-500 hover:bg-blue-500 hover:text-white '>Close</button></Link>
+          <button
+            className='cursor-pointer font-semibold text-[14px] border-2  
+            border-blue-500 py-2 px-4 rounded-[2px] text-blue-500 hover:bg-blue-500 hover:text-white ' onClick={handleAddToCart}>Add to cart</button>
+            <button className='cursor-pointer font-semibold text-[14px] border-2  border-blue-500 py-2 px-4 rounded-[2px] text-blue-500 hover:bg-blue-500 hover:text-white flex gap-2' 
+            onClick={handlewishlist}>
+              {iswishllisted? <FaHeart size={20}/> : <FaRegHeart size={20} />}
+              {iswishllisted? "Remove from wishlist" : "Add to wishlist"}
+              </button>
         </div>
 
 
