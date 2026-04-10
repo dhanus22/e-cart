@@ -3,26 +3,18 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
 // Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyDRz8e3GvHEmYKtad9rHV6v21O29ld3YEI",
-  authDomain: "e-cart-358d6.firebaseapp.com",
-  projectId: "e-cart-358d6",
-  storageBucket: "e-cart-358d6.firebasestorage.app",
-  messagingSenderId: "754709530590",
-  appId: "1:754709530590:web:b200175c9f8c6639467f4f",
-  measurementId: "G-JDNZ50CWQB"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase
-
-//const analytics = getAnalytics(app);
-
 const app = initializeApp(firebaseConfig);
-export const _Auth=getAuth(app)
-export const _DB=getFirestore(app)
+export const _Auth = getAuth(app);
+export const _DB = getFirestore(app);

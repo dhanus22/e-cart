@@ -59,9 +59,9 @@ const Footer = () => {
       <img src={logo} alt="" onClick={handlelogo} className='h-8.5' />
     </Link>
           <form action="" className='flex gap-4 font-semibold'>
-            <input type="" placeholder="English" className='border-1 outline-none cursor-pointer text-center w-[120px] text-[14px]  py-1 rounded-[3px]' />
+            <input type="" placeholder="English" readOnly className='border-1 outline-none cursor-pointer text-center w-[120px] text-[14px]  py-1 rounded-[3px]' />
             <img src={India} alt="" className='h-5 relative top-1.5 left-11' />
-            <input type="" placeholder="India" className='border-1 outline-none cursor-pointer text-center w-[100px] text-[14px] py-1 rounded-[3px]' />
+            <input type="" placeholder="India" readOnly className='border-1 outline-none cursor-pointer text-center w-[100px] text-[14px] py-1 rounded-[3px]' />
           </form>
         </div>
 
