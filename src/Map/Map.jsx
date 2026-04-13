@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import Layout from "../components/navbar/Layout";
 import Login from "../components/navbar/pages/Auth/Login";
 import Register from "../components/navbar/pages/Auth/Register";
@@ -12,6 +12,10 @@ export let Mymap = createBrowserRouter([
         path: "/",
         element: <Layout />,
         children: [
+            {
+                index : true,
+                element : <Navigate to="/home"/>
+            },
             {
                 path: "/home",
                 element: <Home />
