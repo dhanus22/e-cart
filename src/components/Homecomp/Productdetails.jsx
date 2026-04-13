@@ -22,7 +22,7 @@ const Productdetails = () => {
   let {addtowishlist, wishitems, remove} = useContext(Addwishlist)
 
   const loadData = async () => {
-    const data = await fetch(`http://localhost:3006/products/${dbRou.id}`);
+    const data = await fetch(`${import.meta.env.VITE_API_URL}/products/${dbRou.id}`);
     const res = await data.json();
     setspData(res);
     //console.log(res);

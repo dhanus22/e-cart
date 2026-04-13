@@ -19,7 +19,7 @@ const Home = () => {
     // let data = await fetch('https://fakestoreapi.com/products')
     // let res = await data.json() 
 
-    let data = await axios.get('http://localhost:3006/products') 
+    let data = await axios.get(`${import.meta.env.VITE_API_URL}/products`) 
     setData(data.data)
     isSetloading(true)
     //console.log(data.data);
