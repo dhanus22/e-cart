@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa"
 
 const Register = () => {
-  const navigate = useNavigate()
+  const thupleman = useNavigate()
   const [loading, setLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirm, setShowConfirm] = useState(false)
@@ -44,7 +44,7 @@ const Register = () => {
 
       await sendEmailVerification(firedata.user)
       toast.success("Verification email sent!")
-      navigate("/login")
+      thupleman("/login")
     } catch (err) {
       toast.error(err.message)
     } finally {
