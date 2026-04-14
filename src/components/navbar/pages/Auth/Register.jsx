@@ -15,8 +15,6 @@ const Register = () => {
 
   let [showPassword, setShowPassword] = useState(false)
 
- 
-
 
   function handleToggle() {
     setShowPassword(!showPassword)
@@ -48,7 +46,7 @@ const Register = () => {
       [name]: value
     })
   }
-  console.log(state);
+  //console.log(state);
 
 
   async function handlesubmit(e) {
