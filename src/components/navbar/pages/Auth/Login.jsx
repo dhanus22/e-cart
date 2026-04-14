@@ -34,7 +34,7 @@ const Login = () => {
   async function handleForgot(e) {
     e.preventDefault()
     if (!state.email) {
-      toast.error("Enter your email first")
+      toast.error("Enter your email")
       return
     }
     try {
