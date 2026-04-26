@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth'
+import { signInWithEmailAndPassword, sendPasswordResetEmail, reload } from 'firebase/auth'
 import toast from 'react-hot-toast'
 import { _Auth } from '../../../../Backend/Bass'
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa"
@@ -23,6 +23,7 @@ const Login = () => {
       await signInWithEmailAndPassword(_Auth, state.email, state.password)
       toast.success("Login successful")
       thupleman("/home")
+      window.location.reload()
     } catch (err) {
       toast.error(err.message)
       setState(prev => ({ ...prev, password: "" }))

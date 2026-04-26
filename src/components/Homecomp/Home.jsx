@@ -32,22 +32,22 @@ const Home = () => {
       {isloading ? (
         <>
           {/* Category filter — scrollable on mobile */}
-          <ul className="flex flex-wrap justify-center items-center gap-3 md:gap-8 mt-6 font-semibold text-[14px] md:text-[16px] px-4">
-            <li className="p-2 border-blue-400 border-2 rounded-[18px] text-blue-500 hover:bg-blue-500 hover:text-white cursor-pointer"
+          <ul className="flex flex-wrap justify-center items-center gap-2 md:gap-8 mt-2 font-semibold text-[9px] md:text-[14px] px-6 ">
+            <li className="p-1 md:p-2 border-blue-400 border-2 rounded-[2px] text-blue-500 hover:bg-blue-500 hover:text-white cursor-pointer"
               onClick={() => handleCategory("men's clothing")}>Men's clothing</li>
-            <li className="p-2 border-blue-400 border-2 rounded-[18px] text-blue-500 hover:bg-blue-500 hover:text-white cursor-pointer"
+            <li className="p-1 md:p-2 border-blue-400 border-2 rounded-[2px] text-blue-500 hover:bg-blue-500 hover:text-white cursor-pointer"
               onClick={() => handleCategory("jewelery")}>Jewelery</li>
-            <li className="p-2 border-blue-400 border-2 rounded-[18px] text-blue-500 hover:bg-blue-500 hover:text-white cursor-pointer"
+            <li className="p-1 md:p-2 border-blue-400 border-2 rounded-[2px] text-blue-500 hover:bg-blue-500 hover:text-white cursor-pointer"
               onClick={() => handleCategory("electronics")}>Electronics</li>
-            <li className="p-2 border-blue-400 border-2 rounded-[18px] text-blue-500 hover:bg-blue-500 hover:text-white cursor-pointer"
+            <li className="p-1 md:p-2 border-blue-400 border-2 rounded-[2px] text-blue-500 hover:bg-blue-500 hover:text-white cursor-pointer"
               onClick={() => handleCategory("women's clothing")}>Women's clothing</li>
-            <Link to="/wishlist" className="p-2 border-blue-400 border-2 rounded-[50%] text-blue-500 hover:bg-blue-500 hover:text-white cursor-pointer flex justify-center items-center">
-              <FaRegHeart size={20} />
+            <Link to="/wishlist" className="p-1 md:p-2 border-blue-400 border-2 rounded-[50%] text-blue-500 hover:bg-blue-500 hover:text-white cursor-pointer flex justify-center items-center">
+              <FaRegHeart size={13} className="md:size-5" />
             </Link>
           </ul>
 
           {/* Product grid — 1 col mobile, 2 col tablet, 3 col laptop, 4 col large */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-6 md:px-14 mt-6 mb-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-6 md:px-14 mt-3 mb-10">
             {Data.filter((items) =>
               items.category.toLowerCase().includes(search.toLowerCase()) &&
               items.category.toLowerCase().includes(category.toLowerCase())

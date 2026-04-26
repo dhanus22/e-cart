@@ -3,12 +3,15 @@ import { Addwishlist } from '../../../contextapi/Wishcontext'
 import Wishlistcard from './Wishlistcard'
 import { Link } from 'react-router-dom'
 import Footer from '../Footer'
+import { Authcontext } from '../../../contextapi/Contextapi'
+import { IoCartOutline } from 'react-icons/io5'
 
 const Wishlist = () => {
   let { wishitems } = useContext(Addwishlist)
+  let uservalid = useContext(Authcontext)
 
-  return (
-    <>
+  function validuser(){
+    return (
       <section className='px-4 md:mx-14 mt-10 flex flex-col gap-4 items-center'>
         <h1 className='font-bold font-serif text-3xl'>My wishlist</h1>
 
@@ -24,6 +27,9 @@ const Wishlist = () => {
                 price={items.price}
               />
             ))}
+            <Link to="/home" className='text-blue-500 border-2 border-blue-500 py-2 px-3 text-center font-semibold hover:text-white hover:bg-blue-500'>
+          Continue Shopping
+        </Link>
           </div>
         ) : (
           <div className='flex flex-col justify-center items-center gap-6 py-20 text-center px-4'>
@@ -34,10 +40,37 @@ const Wishlist = () => {
             </Link>
           </div>
         )}
-        <Link to="/home" className='text-blue-500 border-2 border-blue-500 py-2 px-3 text-center font-semibold hover:text-white hover:bg-blue-500'>
-          Continue Shopping
-        </Link>
+        
       </section>
+    )
+  }
+
+  function invaliduser(){
+    return (
+      <>
+      <section className='flex flex-col items-center justify-center gap-6 py-20 px-4'>
+                      <IoCartOutline size={150} className='text-gray-400'/>
+                      <h1 className='text-xl md:text-2xl font-semibold text-center'>
+                          Login to view your wishlist!
+                      </h1>
+                      <div className='flex gap-4 justify-center items-center'>
+                          <Link to="/login" className='text-blue-500 border-2 border-blue-500 py-2 px-3 font-semibold hover:text-white hover:bg-blue-500'>
+                              Sign in
+                          </Link>
+                          <h1>or</h1>
+                          <Link to="/register" className='text-blue-500 border-2 border-blue-500 py-2 px-3 font-semibold hover:text-white hover:bg-blue-500'>
+                              Register
+                          </Link>
+                      </div>
+                  </section>
+      </>
+      
+    )
+  }
+
+  return (
+    <>
+      {uservalid? validuser() : invaliduser()}
       <Footer/>
     </>
   )
