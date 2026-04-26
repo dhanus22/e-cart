@@ -36,7 +36,7 @@ const Cart = () => {
                                     price={item.price}
                                 />
                             ))}
-                            <Link to="/home" className='text-blue-500 border-2 border-blue-500 w-[200px] py-2 px-3 font-semibold hover:text-white hover:bg-blue-500'>
+                            <Link to="/home" className='text-blue-500 border-2 border-blue-500 w-[180px] py-2 px-3 font-semibold hover:text-white hover:bg-blue-500 text-center'>
                                 Continue Shopping
                             </Link>
                         </div>

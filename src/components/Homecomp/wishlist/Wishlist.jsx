@@ -34,7 +34,7 @@ const Wishlist = () => {
             </Link>
           </div>
         )}
-        <Link to="/home" className='text-blue-500 border-2 border-blue-500 py-2 px-3 font-semibold hover:text-white hover:bg-blue-500'>
+        <Link to="/home" className='text-blue-500 border-2 border-blue-500 py-2 px-3 text-center font-semibold hover:text-white hover:bg-blue-500'>
           Continue Shopping
         </Link>
       </section>
