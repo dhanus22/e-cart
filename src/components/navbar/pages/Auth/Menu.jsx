@@ -73,7 +73,7 @@ const Menu = ({ search, setSearch }) => {
 
   return (
     <>
-      <div className='rght_nav flex gap-10 flex justify-center items-center '>
+      <div className='rght_nav flex gap-6 flex justify-center items-center '>
         <div className='flex justify-center items-center'>
           <CiSearch className='relative top-0 left-6' />
           <form action="">

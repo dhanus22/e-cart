@@ -1,31 +1,23 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { FaStar } from "react-icons/fa";
-// import { count } from 'firebase/firestore';
 import Footer from './Footer';
 import { Addcart } from './../../contextapi/Cartcontext'
 import toast from 'react-hot-toast';
-// import { onAuthStateChanged } from 'firebase/auth';
 import { _Auth } from '../../Backend/Bass';
-import { FaRegHeart } from "react-icons/fa";
+import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { Addwishlist } from '../../contextapi/Wishcontext';
-import { FaHeart } from "react-icons/fa";
 
 const Productdetails = () => {
-
   const dbRou = useParams();
-
   const [spdata, setspData] = useState();
-
-  let { cartitems, addtocart: addToCartCtx } = useContext(Addcart)
-
-  let {addtowishlist, wishitems, remove} = useContext(Addwishlist)
+  let { addtocart: addToCartCtx } = useContext(Addcart)
+  let { addtowishlist, wishitems, remove } = useContext(Addwishlist)
 
   const loadData = async () => {
     const data = await fetch(`${import.meta.env.VITE_API_URL}/products/${dbRou.id}`);
     const res = await data.json();
     setspData(res);
-    //console.log(res);
   };
 
   useEffect(() => {
@@ -35,17 +27,10 @@ const Productdetails = () => {
 
   let ratecount = Math.round(spdata?.rating.rate)
   let count = 5
-  //console.log(ratecount);
-
-  //   function handleAddToCart() {
-  //     addToCartCtx(spdata)
-  //     toast.success("Added to cart")
-  // }
 
   const handleAddToCart = async () => {
     try {
-      const user = _Auth.currentUser;   //  This is synchronous and instant
-
+      const user = _Auth.currentUser;
       if (user && user.emailVerified) {
         addToCartCtx(spdata);
         toast.success("Added to cart");
@@ -57,73 +42,79 @@ const Productdetails = () => {
     }
   };
 
-  let iswishllisted = wishitems.some(item=> item.id === spdata?.id)
+  let iswishllisted = wishitems.some(item => item.id === spdata?.id)
 
   let handlewishlist = () => {
-    try{
+    try {
       let user = _Auth.currentUser
-      if(user && user.emailVerified){
-        if(iswishllisted){
+      if (user && user.emailVerified) {
+        if (iswishllisted) {
           remove(spdata.id)
           toast.success("Removed from wish list")
+        } else {
+          addtowishlist(spdata)
         }
-        else{addtowishlist(spdata)}
-      }
-      else{
+      } else {
         toast.error("Login to add to wish list")
       }
-    }
-    catch(error){
+    } catch (error) {
       toast.error("Something went wrong")
     }
   }
 
-
   return (
     <div className='min-w-screen min-h-screen'>
-      {/* optional chaining */}
-      <div className='w-full h-full flex flex-col justify-center items-center mt-6'>
-        <div className=''>
-          <img src={spdata?.image} alt="" className='h-[400px] shrink-0' />
-        </div >
+      <div className='w-full h-full flex flex-col justify-center items-center mt-6 px-4'>
 
-        <div className='my-2 flex gap-4 text-[20px]'>
+        {/* Product image */}
+        <div className='w-full flex justify-center'>
+          <img src={spdata?.image} alt="" className='h-[200px] md:h-[400px] object-contain'/>
+        </div>
+
+        {/* Price and rating */}
+        <div className='my-2 flex flex-col md:flex-row gap-2 md:gap-4 text-[18px] md:text-[20px] items-center'>
           <p className='font-semibold'>Price: ${spdata?.price}</p>
-
           <div className='flex justify-center items-center gap-0.5'>
-            <p className=''>{spdata?.rating.rate}</p>
+            <p>{spdata?.rating.rate}</p>
             <span className='flex gap-0.5'>
               {[...Array(count)].map((_, i) => (
-                <FaStar size={20} key={i} className={i < ratecount ? "text-yellow-400" : "text-transparent [stroke:#FACC15] [stroke-width:30]"} />
+                <FaStar size={20} key={i}
+                  className={i < ratecount ? "text-yellow-400" : "text-transparent [stroke:#FACC15] [stroke-width:30]"}/>
               ))}
-
             </span>
           </div>
-
         </div>
 
-        <div className='w-[800px] flex flex-col justify-center items-center'>
-          <h1 className='font-bold text-[28px] underline text-shadow-lg'>{spdata?.title}</h1>
-          <p className='text-gray-800 justify-center'>{spdata?.description}</p>
-
+        {/* Title and description */}
+        <div className='w-full max-w-[800px] flex flex-col justify-center items-center px-2'>
+          <h1 className='font-bold text-[20px] md:text-[28px] underline text-shadow-lg text-center'>
+            {spdata?.title}
+          </h1>
+          <p className='text-gray-800 text-center text-[14px] md:text-[16px] mt-2'>
+            {spdata?.description}
+          </p>
         </div>
 
-        <div className='flex justify-between items-center gap-4 mt-4'>
-          <Link to="/home">
-            <button className='cursor-pointer font-semibold text-[14px] border-2  border-blue-500 py-2 px-4 rounded-[2px] text-blue-500 hover:bg-blue-500 hover:text-white '>Close</button></Link>
-          <button
-            className='cursor-pointer font-semibold text-[14px] border-2  
-            border-blue-500 py-2 px-4 rounded-[2px] text-blue-500 hover:bg-blue-500 hover:text-white ' onClick={handleAddToCart}>Add to cart</button>
-            <button className='cursor-pointer font-semibold text-[14px] border-2  border-blue-500 py-2 px-4 rounded-[2px] text-blue-500 hover:bg-blue-500 hover:text-white flex gap-2' 
-            onClick={handlewishlist}>
-              {iswishllisted? <FaHeart size={20}/> : <FaRegHeart size={20} />}
-              {iswishllisted? "Remove from wishlist" : "Add to wishlist"}
-              </button>
+        {/* Action buttons — stack on mobile */}
+        <div className='flex flex-col sm:flex-row justify-center items-center gap-3 mt-4 w-full max-w-[600px] px-2'>
+          <Link to="/home" className='w-full sm:w-auto'>
+            <button className='w-full cursor-pointer font-semibold text-[14px] border-2 border-blue-500 py-2 px-4 rounded-[2px] text-blue-500 hover:bg-blue-500 hover:text-white'>
+              Close
+            </button>
+          </Link>
+          <button onClick={handleAddToCart}
+            className='w-full sm:w-auto cursor-pointer font-semibold text-[14px] border-2 border-blue-500 py-2 px-4 rounded-[2px] text-blue-500 hover:bg-blue-500 hover:text-white'>
+            Add to cart
+          </button>
+          <button onClick={handlewishlist}
+            className='w-full sm:w-auto cursor-pointer font-semibold text-[14px] border-2 border-blue-500 py-2 px-4 rounded-[2px] text-blue-500 hover:bg-blue-500 hover:text-white flex justify-center gap-2'>
+            {iswishllisted ? <FaHeart size={20}/> : <FaRegHeart size={20}/>}
+            {iswishllisted ? "Remove from wishlist" : "Add to wishlist"}
+          </button>
         </div>
-
 
       </div>
-      <Footer />
+      <Footer/>
     </div>
   )
 }

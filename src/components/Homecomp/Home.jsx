@@ -6,73 +6,66 @@ import Footer from "./Footer";
 import Hero from "./herocomp/Hero";
 import { FaRegHeart } from "react-icons/fa";
 
-
 const Home = () => {
-
   let [Data, setData] = useState([])
   let [isloading, isSetloading] = useState(false)
-
-  let {search = '', setSearch, category, setCategory} = useOutletContext()
-
+  let { search = '', setSearch, category, setCategory } = useOutletContext()
 
   const loadData = async () => {
-    // let data = await fetch('https://fakestoreapi.com/products')
-    // let res = await data.json() 
-
-    let data = await axios.get(`${import.meta.env.VITE_API_URL}/products`) 
+    let data = await axios.get(`${import.meta.env.VITE_API_URL}/products`)
     setData(data.data)
     isSetloading(true)
-    //console.log(data.data);
   }
-  
-   function handleCategory(category){
+
+  function handleCategory(category) {
     setCategory(category)
     setSearch('')
-   }
-   
+  }
 
   useEffect(() => {
     loadData()
   }, [])
-        
-   
-  // console.log(search);
-  
 
   return (
     <>
-     <Hero/>
-       {isloading ? (
+      <Hero />
+      {isloading ? (
         <>
-        
-    <ul className="flex justify-center items-center gap-8 mt-6 font-semibold text-[16px]">
-          <li className="p-2 border-blue-400 border-2 rounded-[18px] text-blue-500 hover:bg-blue-500 hover:text-white cursor-pointer" onClick={() => handleCategory("men's clothing")}>Men's clothing</li>
-          <li className="p-2 border-blue-400 border-2 rounded-[18px] text-blue-500 hover:bg-blue-500 hover:text-white cursor-pointer" onClick={() => handleCategory("jewelery")}>Jewelery</li>
-          <li className="p-2 border-blue-400 border-2 rounded-[18px] text-blue-500 hover:bg-blue-500 hover:text-white cursor-pointer" onClick={() => handleCategory("electronics")}>Electronics</li>
-          <li className="p-2 border-blue-400 border-2 rounded-[18px] text-blue-500 hover:bg-blue-500 hover:text-white cursor-pointer" onClick={() => handleCategory("women's clothing")}>Women's clothing</li>
-          <Link to = "/wishlist" className="p-2 border-blue-400 border-2 rounded-[50%] text-blue-500 hover:bg-blue-500 hover:text-white cursor-pointer flex justify-center items-center gap-1"><FaRegHeart size={20}/> </Link>
-        </ul>
-        
-        <div className="flex flex-wrap justify-center gap-x-14 gap-y-7 mt-6 h-full mb-10">
-        {/* {Data.map((items) => (
-          <div key={items.id}>
-            <Homecomp img={items.image} title={items.title} price={items.price} description={items.description} id={items.id}/>
-          </div>
-        ))} */}
-        {Data.filter((items)=>items.category.toLowerCase().includes(search.toLowerCase()) && items.category.toLowerCase().includes(category.toLowerCase())
-       ).map((items)=>(
-          <div key={items.id}>
-            <Homecomp img={items.image} title={items.title} price={items.price} description={items.description} id={items.id}/>
-          </div>
-        
-        ))}
-      </div>
-      
-      </>
-      ) : <span class="loader"></span> }
-      <Footer/>
-    </>
+          {/* Category filter — scrollable on mobile */}
+          <ul className="flex flex-wrap justify-center items-center gap-3 md:gap-8 mt-6 font-semibold text-[14px] md:text-[16px] px-4">
+            <li className="p-2 border-blue-400 border-2 rounded-[18px] text-blue-500 hover:bg-blue-500 hover:text-white cursor-pointer"
+              onClick={() => handleCategory("men's clothing")}>Men's clothing</li>
+            <li className="p-2 border-blue-400 border-2 rounded-[18px] text-blue-500 hover:bg-blue-500 hover:text-white cursor-pointer"
+              onClick={() => handleCategory("jewelery")}>Jewelery</li>
+            <li className="p-2 border-blue-400 border-2 rounded-[18px] text-blue-500 hover:bg-blue-500 hover:text-white cursor-pointer"
+              onClick={() => handleCategory("electronics")}>Electronics</li>
+            <li className="p-2 border-blue-400 border-2 rounded-[18px] text-blue-500 hover:bg-blue-500 hover:text-white cursor-pointer"
+              onClick={() => handleCategory("women's clothing")}>Women's clothing</li>
+            <Link to="/wishlist" className="p-2 border-blue-400 border-2 rounded-[50%] text-blue-500 hover:bg-blue-500 hover:text-white cursor-pointer flex justify-center items-center">
+              <FaRegHeart size={20} />
+            </Link>
+          </ul>
 
+          {/* Product grid — 1 col mobile, 2 col tablet, 3 col laptop, 4 col large */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-6 md:px-14 mt-6 mb-10">
+            {Data.filter((items) =>
+              items.category.toLowerCase().includes(search.toLowerCase()) &&
+              items.category.toLowerCase().includes(category.toLowerCase())
+            ).map((items) => (
+              <Homecomp
+                key={items.id}
+                img={items.image}
+                title={items.title}
+                price={items.price}
+                description={items.description}
+                id={items.id}
+              />
+            ))}
+          </div>
+        </>
+      ) : <span className="loader"></span>}
+      <Footer />
+    </>
   )
 }
 
