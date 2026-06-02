@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 import { _Auth } from '../../../../Backend/Bass';
 import { IoCartOutline } from "react-icons/io5";
 import { Addcart } from '../../../../contextapi/Cartcontext';
+import { FaRegHeart } from 'react-icons/fa';
 
 
 
@@ -47,7 +48,13 @@ const Menu = ({ search, setSearch }) => {
             <p>{data?.displayName}</p> 
           </section>
           <button onClick={handlelogout} className='hover:bg-blue-500 p-1.5 rounded-[5px] cursor-pointer'>Logout</button>
-          <div className='flex '>
+
+          <NavLink to="/wishlist" className={({isActive})=>
+          isActive ? 'text-white':''} >
+              <FaRegHeart size={20} />
+            </NavLink>
+
+          <div className='flex'>
             <NavLink to="/cart" className={({isActive})=>
           isActive ? 'text-white':''}><IoCartOutline size={25} />  </NavLink>
           {cartcount() > 0? (<span className='relative top-[-6px] right-[10px] text-[10px] text-white border border-white bg-red-700 w-4 h-4 rounded-[50%] flex justify-center items-center'>{cartcount()}</span>) : ''}

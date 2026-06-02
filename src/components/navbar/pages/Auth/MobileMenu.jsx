@@ -6,6 +6,7 @@ import toast from 'react-hot-toast';
 import { _Auth } from '../../../../Backend/Bass';
 import { IoCartOutline } from "react-icons/io5";
 import { Addcart } from '../../../../contextapi/Cartcontext';
+import { FaRegHeart } from 'react-icons/fa';
 
 const MobileMenu = ({ setIsOpen }) => {
   let { cartcount, setcartitems } = useContext(Addcart)
@@ -40,6 +41,12 @@ const MobileMenu = ({ setIsOpen }) => {
             className='hover:bg-blue-500 p-1.5 rounded-[5px] cursor-pointer w-fit'>
             Logout
           </button>
+
+          <NavLink to="/wishlist" className={({isActive})=>
+          isActive ? 'text-white':''} >
+              <FaRegHeart size={20} />
+            </NavLink>
+
           <NavLink to="/cart" onClick={() => setIsOpen(false)}
             className={({isActive}) => isActive ? 'text-white w-fit' : 'w-fit'}>
             <div className='flex items-center gap-1'>
