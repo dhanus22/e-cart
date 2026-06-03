@@ -20,6 +20,9 @@ const Productdetails = () => {
     setspData(res);
   };
 
+  console.log(spdata);
+  
+
   useEffect(() => {
     window.scrollTo(0, 0)
     loadData();
@@ -41,6 +44,8 @@ const Productdetails = () => {
       toast.error("Something went wrong");
     }
   };
+
+
 
   let iswishllisted = wishitems.some(item => item.id === spdata?.id)
 
