@@ -36,7 +36,7 @@ const Cart = () => {
                                     price={item.price}
                                 />
                             ))}
-                            <Link to="/home" className='text-blue-500 border-2 border-blue-500 w-auto py-2 px-3 font-semibold hover:text-white hover:bg-blue-500 text-center'>
+                            <Link to="/home" className='text-blue-400 border-2 border-blue-400 w-auto py-2 px-3 font-semibold hover:text-white hover:bg-blue-500 text-center'>
                                 Continue Shopping
                             </Link>
                         </div>
@@ -91,7 +91,7 @@ const Cart = () => {
                     <div className='flex flex-col items-center justify-center gap-4 py-20'>
                         <IoCartOutline size={200} className='text-gray-400 md:w-[300px]'/>
                         <h1 className='text-2xl font-semibold'>Your cart is empty!</h1>
-                        <Link to="/home" className='text-blue-500 border-2 border-blue-500 py-2 px-3 font-semibold hover:text-white hover:bg-blue-500'>
+                        <Link to="/home" className='text-blue-400 border-2 border-blue-400 py-2 px-3 font-semibold hover:text-white hover:bg-blue-500'>
                             Shop now
                         </Link>
                     </div>
@@ -108,11 +108,11 @@ const Cart = () => {
                     Login to view your cart!
                 </h1>
                 <div className='flex gap-4 justify-center items-center'>
-                    <Link to="/login" className='text-blue-500 border-2 border-blue-500 py-2 px-3 font-semibold hover:text-white hover:bg-blue-500'>
+                    <Link to="/login" className='text-blue-400 border-2 border-blue-400 py-2 px-3 font-semibold hover:text-white hover:bg-blue-500'>
                         Sign in
                     </Link>
                     <h1>or</h1>
-                    <Link to="/register" className='text-blue-500 border-2 border-blue-500 py-2 px-3 font-semibold hover:text-white hover:bg-blue-500'>
+                    <Link to="/register" className='text-blue-400 border-2 border-blue-400 py-2 px-3 font-semibold hover:text-white hover:bg-blue-500'>
                         Register
                     </Link>
                 </div>

@@ -103,16 +103,16 @@ const Productdetails = () => {
         {/* Action buttons — stack on mobile */}
         <div className='flex flex-col sm:flex-row justify-center items-center gap-3 mt-4 w-full max-w-[600px] px-2'>
           <Link to="/home" className='w-full sm:w-auto'>
-            <button className='w-full cursor-pointer font-semibold text-[14px] border-2 border-blue-500 py-2 px-4 rounded-[2px] text-blue-500 hover:bg-blue-500 hover:text-white'>
+            <button className='w-full cursor-pointer font-semibold text-[14px] border-2 border-blue-400 py-2 px-4 rounded-[2px] text-blue-500 hover:bg-blue-500 hover:text-white'>
               Close
             </button>
           </Link>
           <button onClick={handleAddToCart}
-            className='w-full sm:w-auto cursor-pointer font-semibold text-[14px] border-2 border-blue-500 py-2 px-4 rounded-[2px] text-blue-500 hover:bg-blue-500 hover:text-white'>
+            className='w-full sm:w-auto cursor-pointer font-semibold text-[14px] border-2 border-blue-400 py-2 px-4 rounded-[2px] text-blue-500 hover:bg-blue-500 hover:text-white'>
             Add to cart
           </button>
           <button onClick={handlewishlist}
-            className='w-full sm:w-auto cursor-pointer font-semibold text-[14px] border-2 border-blue-500 py-2 px-4 rounded-[2px] text-blue-500 hover:bg-blue-500 hover:text-white flex justify-center gap-2'>
+            className='w-full sm:w-auto cursor-pointer font-semibold text-[14px] border-2 border-blue-400 py-2 px-4 rounded-[2px] text-blue-500 hover:bg-blue-500 hover:text-white flex justify-center gap-2'>
             {iswishllisted ? <FaHeart size={20}/> : <FaRegHeart size={20}/>}
             {iswishllisted ? "Remove from wishlist" : "Add to wishlist"}
           </button>

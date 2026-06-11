@@ -28,7 +28,7 @@ let Wishcontext = ({children})=>{
 
     function addtowishlist(product){
         setWishitems(prev=>[...prev, product] )
-        toast.success("Added to wish list")
+        toast.success("Added to wishlist")
         console.log(wishitems);
     }
 

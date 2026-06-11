@@ -42,7 +42,7 @@ const Homecomp = ({ img, title, price, description, id }) => {
           toast.success("Removed from wishlist")
         } else {
           addtowishlist({ id, title, price, description, image: img })
-          toast.success("Added to wishlist")
+          
         }
       } else {
         toast.error("Login to add to wishlist")
@@ -69,7 +69,7 @@ const Homecomp = ({ img, title, price, description, id }) => {
 
           <div className="flex gap-3 items-center">
             <button onClick={handleAddToCart}
-              className="w-full py-1.5 text-[12px] font-semibold text-blue-500 border border-blue-500 hover:bg-blue-500 hover:text-white transition-all cursor-pointer rounded-[4px]">
+              className="w-full py-1.5 text-[12px] font-semibold text-blue-400 border border-blue-400 hover:bg-blue-500 hover:text-white transition-all cursor-pointer rounded-[4px]">
               Add to cart
             </button>
             <button onClick={handleWishlist} className="cursor-pointer shrink-0">

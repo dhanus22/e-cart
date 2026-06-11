@@ -22,7 +22,7 @@ const Wishlistcard = ({ image, title, price, id, description }) => {
 
         <div className='w-full flex justify-between gap-4 items-center'>
           <Link to={`/productDetails/${id}`}
-            className="w-full py-1 text-[12px] text-center font-semibold text-blue-500 border border-blue-500 hover:bg-blue-500 hover:text-white transition-all cursor-pointer rounded-[4px]">
+            className="w-full py-1 text-[12px] text-center font-semibold text-blue-400 border border-blue-400 hover:bg-blue-500 hover:text-white transition-all cursor-pointer rounded-[4px]">
             View details
           </Link>
           <FaRegTrashAlt size={18} onClick={() => remove(id)} className='text-red-700 cursor-pointer shrink-0'/>

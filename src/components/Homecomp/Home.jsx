@@ -33,13 +33,13 @@ const Home = () => {
         <>
           
           <ul className="flex flex-wrap justify-center items-center gap-2 md:gap-8 mt-2 font-semibold text-[9px] md:text-[14px] px-6 ">
-            <li className="p-1 md:p-2 border-blue-400 border-2 rounded-[2px] text-blue-500 hover:bg-blue-500 hover:text-white cursor-pointer"
+            <li className="p-1 md:p-2 border-blue-400 border-2 rounded-[2px] text-blue-400 hover:bg-blue-500 hover:text-white cursor-pointer"
               onClick={() => handleCategory("men's clothing")}>Men's clothing</li>
-            <li className="p-1 md:p-2 border-blue-400 border-2 rounded-[2px] text-blue-500 hover:bg-blue-500 hover:text-white cursor-pointer"
+            <li className="p-1 md:p-2 border-blue-400 border-2 rounded-[2px] text-blue-400 hover:bg-blue-500 hover:text-white cursor-pointer"
               onClick={() => handleCategory("jewelery")}>Jewelery</li>
-            <li className="p-1 md:p-2 border-blue-400 border-2 rounded-[2px] text-blue-500 hover:bg-blue-500 hover:text-white cursor-pointer"
+            <li className="p-1 md:p-2 border-blue-400 border-2 rounded-[2px] text-blue-400 hover:bg-blue-500 hover:text-white cursor-pointer"
               onClick={() => handleCategory("electronics")}>Electronics</li>
-            <li className="p-1 md:p-2 border-blue-400 border-2 rounded-[2px] text-blue-500 hover:bg-blue-500 hover:text-white cursor-pointer"
+            <li className="p-1 md:p-2 border-blue-400 border-2 rounded-[2px] text-blue-400 hover:bg-blue-500 hover:text-white cursor-pointer"
               onClick={() => handleCategory("women's clothing")}>Women's clothing</li>
             
           </ul>
